@@ -2,6 +2,7 @@ package inslem.it.recyclerviewheterogene;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,12 @@ import java.util.List;
 
 public class AdapteurHeterogene extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-
     private List<Object> mArrayList;
     private final int MESSAGE = 1;
     private final int IMAGE = 2;
     private Context mContext;
 
-    public AdapteurHeterogene(Context context, List<Object> arrayList) {
+    AdapteurHeterogene(Context context, List<Object> arrayList) {
         mArrayList = arrayList;
         mContext = context;
     }
@@ -44,18 +44,19 @@ public class AdapteurHeterogene extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() == MESSAGE)
         {
-            Message message = (Message) mArrayList.get(position);
+            MessageClass message = (MessageClass) mArrayList.get(position);
             MessageViewHolder msg = (MessageViewHolder) holder;
             msg.mmMessage.setText(message.getMessage());
 
         }
-        else // (holder.getItemViewType() == IMAGE)
+        else if (holder.getItemViewType() == IMAGE)
         {
-            Image image = (Image) mArrayList.get(position);
+            ImageClass image = (ImageClass) mArrayList.get(position);
             ImageViewHolder imgHolder = (ImageViewHolder) holder;
             imgHolder.iiImage.setImageDrawable(image.getImage());
+        }else{
+            Log.d("inslem","Item non reconnu");
         }
-
     }
 
     @Override
@@ -71,11 +72,11 @@ public class AdapteurHeterogene extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public int getItemViewType(int position) {
 
-        if (mArrayList.get(position) instanceof Message)
+        if (mArrayList.get(position) instanceof MessageClass)
         {
             return MESSAGE;
         }
-        else //if (mArrayList.get(position) instanceof Image)
+        else //if (mArrayList.get(position) instanceof ImageClass)
         {
             return IMAGE;
         }
@@ -85,7 +86,7 @@ public class AdapteurHeterogene extends RecyclerView.Adapter<RecyclerView.ViewHo
     {
         ImageView iiImage;
 
-        public ImageViewHolder(View itemView)
+        ImageViewHolder(View itemView)
         {
             super(itemView);
             iiImage =  itemView.findViewById(R.id.imageView2);
@@ -97,12 +98,10 @@ public class AdapteurHeterogene extends RecyclerView.Adapter<RecyclerView.ViewHo
     {
         TextView  mmMessage;
 
-        public MessageViewHolder(View itemView)
+       MessageViewHolder(View itemView)
         {
             super(itemView);
             mmMessage =  itemView.findViewById(R.id.message);
         }
     }
-
-
 }

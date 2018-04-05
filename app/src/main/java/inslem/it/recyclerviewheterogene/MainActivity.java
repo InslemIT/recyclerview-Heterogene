@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void donneesTest()
     {
-        mMessages.add(new Message("Bonjour"));
-        mMessages.add(new Image( getResources().getDrawable(R.drawable.ic_android_black_24dp)));
-        mMessages.add(new Message("bonne continuation"));
-        mMessages.add(new Image( getResources().getDrawable(R.drawable.ic_android_black_24dp)));
-        mMessages.add(new Message("à la prochaine vidéo"));
-        mMessages.add(new Image( getResources().getDrawable(R.drawable.ic_android_black_24dp)));
+        mMessages.add(new MessageClass("Bonjour"));
+        mMessages.add(new ImageClass( getResources().getDrawable(R.drawable.ic_android_black_24dp)));
+        mMessages.add(new MessageClass("bonne continuation"));
+        mMessages.add(new ImageClass( getResources().getDrawable(R.drawable.ic_android_black_24dp)));
+        mMessages.add(new MessageClass("à la prochaine vidéo"));
+        mMessages.add(new ImageClass( getResources().getDrawable(R.drawable.ic_android_black_24dp)));
 
 
     }
